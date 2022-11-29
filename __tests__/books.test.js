@@ -7,17 +7,13 @@ describe('book routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
+
   it('/books should return a list of books', async () => {
     const res = await request(app).get('/books');
-    expect(res.body.length).toEqual(7);
-    expect(res.body[0]).toEqual({
-      id: expect.any(String),
-      title: expect.any(String),
-      released: expect.any(Number),
-    });
+    expect(res.body.length).toEqual(8);
   });
-  expect(1).toEqual(1);
-});
-afterAll(() => {
-  pool.end();
+
+  afterAll(() => {
+    pool.end();
+  });
 });
