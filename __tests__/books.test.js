@@ -21,7 +21,7 @@ describe('book routes', () => {
       genre: expect.any(String),
     });
   });
-  it.only('/books/1 should return a book detail with authors', async () => {
+  it('/books/1 should return a book detail with authors', async () => {
     const res = await request(app).get('/books/1');
     expect(res.body).toEqual({
       title: expect.any(String),
