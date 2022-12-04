@@ -7,28 +7,26 @@ describe('book routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-
+  afterAll(() => {
+    pool.end();
+  });
   it('/books should return a list of books', async () => {
     const res = await request(app).get('/books');
+    expect(res.status).toBe(200);
     expect(res.body.length).toEqual(8);
     expect(res.body[0]).toEqual({
       id: expect.any(String),
-      name: expect.any(String),
+      title: expect.any(String),
       release: expect.any(Number),
       genre: expect.any(String),
     });
-
-    it('/books/1 should return a book detail with authors', async () => {
-      const res = await request(app).get('/books/1');
-      expect(res.body).toEqual({
-        name: expect.any(String),
-        release: expect.any(Number),
-        authors: expect.any(Array),
-      });
-    });
   });
-
-  afterAll(() => {
-    pool.end();
+  it.only('/books/1 should return a book detail with authors', async () => {
+    const res = await request(app).get('/books/1');
+    expect(res.body).toEqual({
+      title: expect.any(String),
+      release: expect.any(Number),
+      authors: expect.any(Array),
+    });
   });
 });
