@@ -32,10 +32,10 @@ describe('book routes', () => {
   it('/authors should return a list of authors', async () => {
     const res = await request(app).get('/authors');
     expect(res.status).toBe(200);
+    expect(res.body.length).toEqual(7);
     expect(res.body[0]).toEqual({
+      id: expect.any(String),
       name: expect.any(String),
-      date_of_birth: expect.any(String),
-      place_of_birth: expect.any(String),
     });
   });
 });
