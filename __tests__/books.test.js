@@ -29,4 +29,13 @@ describe('book routes', () => {
       authors: expect.any(Array),
     });
   });
+  it('/authors should return a list of authors', async () => {
+    const res = await request(app).get('/authors');
+    expect(res.status).toBe(200);
+    expect(res.body[0]).toEqual({
+      name: expect.any(String),
+      date_of_birth: expect.any(String),
+      place_of_birth: expect.any(String),
+    });
+  });
 });
