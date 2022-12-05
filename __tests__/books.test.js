@@ -38,4 +38,13 @@ describe('book routes', () => {
       name: expect.any(String),
     });
   });
+  it('/authors/1 should return author detail with books', async () => {
+    const res = await request(app).get('/authors/1');
+    expect(res.body).toEqual({
+      name: expect.any(String),
+      date_of_birth: expect.any(String),
+      place_of_birth: expect.any(String),
+      books: expect.any(Array),
+    });
+  });
 });
